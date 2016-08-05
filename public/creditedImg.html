@@ -1,0 +1,8 @@
+<div>
+    <img ng-src="https://s3.amazonaws.com/{{bucket}}/{{filename}}" ng-class="{'img-responsive': true, 'pickable': isClickable()}" ng-click="click()">
+    <span ng-if="creditName && !creditHref" class="photo-credit">Image by: {{creditName}}<br /></span>
+    <span ng-if="creditName && creditHref" class="photo-credit">Image by: <a ng-href="{{creditHref}}" ga-track-event="['external link', 'photo credit', creditHref]" target="_blank">{{creditName}}</a><br /></span>
+    <span ng-if="!creditName && creditHref" class="photo-credit"><a ng-href="{{creditHref}}" ga-track-event="['external link', 'photo credit', creditHref]" target="_blank">Image source</a><br /></span>
+    <h2 ng-if='name' ng-class="{'pickable': isClickable()}" ng-click="click()">{{name}}</h2>
+    <a ng-if='statsLink' ng-href="#/stats/{{name}}">View stats</a><br />
+</div>

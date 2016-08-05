@@ -1,0 +1,47 @@
+<div class="fader" ng-animate-swap="data">
+    <div class="row">
+        <div class="col-xs-12" ng-if="showIntro">
+            <h1>Pick the better one</h1>
+            <p>Looking at the two things shown below, click or tap the one you think is better.</p>
+        </div>
+    </div>
+    <div class="row" ng-if="data.results">
+        <div class="col-xs-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">Results</div>
+                </div>
+                <div class="panel-body">
+                    <p>About <strong>{{data.voted === data.results[0].name ? data.results[0].score : data.results[1].score}}</strong> agree that the better one is <strong>{{data.voted}}</strong>.</p>
+                    <div class="row">
+                        <div class="col-xs-6 text-left">
+                            {{data.results[0].name}}: {{data.results[0].score}}
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            {{data.results[1].name}}: {{data.results[1].score}}
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" style="width: {{data.results[0].score}}"></div>
+                        <div class="progress-bar progress-bar-info" style="width: {{data.results[1].score}}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6" ng-repeat="candidate in data.candidates">
+            <pbo-credited-img name="{{candidate.name}}" bucket="{{data.bucket}}" filename="{{candidate.picture}}" credit-name="{{candidate.photocredit.name}}" credit-href="{{candidate.photocredit.url}}" stats-link="true" on-click="sendVote($index)" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div class="text-center">
+                <button class="btn btn-primary btn-lg btn-block" ng-click="skip()">Skip</button>
+            </div>
+            <div class="padding"></div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+</div>

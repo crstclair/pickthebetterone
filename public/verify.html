@@ -1,0 +1,6 @@
+<div class="alert alert-success" ng-if="completed">
+    <strong>Done.</strong> Thank you for verifying your email.
+</div>
+<div class="alert alert-danger" ng-if="failed">
+    <p ng-repeat="message in messages">{{message}}</p>
+</div>

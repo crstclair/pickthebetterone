@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /vote/
+Disallow: /login/
+Disallow: /addNew/
+Disallow: /reset/
+Disallow: /verify/

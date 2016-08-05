@@ -1,0 +1,23 @@
+{
+  "name": "vote",
+  "version": "0.0.0",
+  "authors": [
+    "Chris St. Clair <crstclair@users.noreply.github.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "angular": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "angular-animate": "^1.5.5",
+    "angular-google-analytics": "^1.1.7",
+    "angular-social": "^1.0.0"
+  }
+}

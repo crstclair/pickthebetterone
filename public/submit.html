@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Submit a new thing</h2>
+        <p>If there's a thing that isn't listed here, you can submit it below. You'll need to have a picture of the thing. Please make sure you have permission to use the picture.</p>
+        <p>Keep in mind the following rules:</p>
+        <ul>
+            <li>It should be something that pretty much everyone is familiar with. The thing shouldn't be something technical and shouldn't be an obscure item from a 20-year-old video game or anything like that.</li>
+            <li>If the thing is a specific person, it needs to be someone really famous.</li>
+            <li>Keep it family friendly.</li>
+        </ul>
+        <div class="alert alert-danger" role="alert" ng-if="messages">
+            <p><strong>Could not accept submission:</strong></p>
+            <p ng-repeat="message in messages">{{message}}</p>
+        </div>
+        <div class="alert alert-success" role="alert" ng-if="submitCompleted">
+            <p>Thanks for submitting your thing! People will be able to vote on it as soon as it is approved. Would you like to submit another thing?</p>
+            <button class="btn btn-primary" ng-click="reset()">Submit another thing</button>
+            <a href="#/" class="btn btn-default" role="button">Back to voting</a>
+        </div>
+        <form novalidate name="submitForm" ng-if="!submitCompleted">
+            <div ng-class="{'form-group': true, 'has-error': submitForm.name.$touched && !submitForm.name.$valid}">
+                <label class="control-label" for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name of this thing" maxlength="30" ng-model="submission.name" ng-pattern="/^[\w\u0020().'-]*$/" required>
+                <span class="help-block" ng-show="submitForm.name.$touched && submitForm.name.$error.required">Please enter a name for this thing.</span>
+                <span class="help-block" ng-show="submitForm.name.$touched && submitForm.name.$error.pattern">The name of your thing may only contain the following characters: letters, numbers, spaces, apostrophes, parentheses, periods, and hyphens.</span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="picture">Picture</label>
+                <input type="file" id="picture" name="picture" file-model="submission.picture" required>
+                <span class="help-block">Maximum file size is 3 MB.</span>
+            </div>
+            <h3>Picture credit</h3>
+            <p>Some pictures require you to give credit to the person who owns them. Use these fields to do that.</p>
+            <div class="form-group">
+                <label class="control-label" for="credit">Picture Owner</label>
+                <input type="text" class="form-control" id="credit" name="credit" placeholder="Name of owner" maxlength="50" ng-model="submission.credit">
+                <span class="help-block">Optional</span>
+            </div>
+            <div ng-class="{'form-group': true, 'has-error': submitForm.creditUrl.$touched && !submitForm.creditUrl.$valid}">
+                <label class="control-label" for="creditUrl">Picture Owner URL</label>
+                <input type="url" class="form-control" id="creditUrl" name="creditUrl" placeholder='http://www.example.com/' maxlength="300" ng-model="submission.creditUrl" ng-model-options="{ updateOn: 'blur' }">
+                <span class="help-block">Optional</span>
+                <span class="help-block" ng-show="submitForm.creditUrl.$touched && submitForm.creditUrl.$error.url">This doesn't look like a valid URL. Remember to enter the "http://" or "https://" at the beginning.</span>
+            </div>
+            <a href="" role="button" class="btn btn-primary" ng-click="submitForm.$valid && send()">Submit</a>
+            <img ng-src="images/ajax-loader.gif" ng-if="loading">
+        </form>
+        <div class="padding"/>
+    </div>
+</div>

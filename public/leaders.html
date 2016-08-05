@@ -1,0 +1,9 @@
+<h2>Best things</h2>
+<div class="list-group">
+    <a href="#/stats/{{thing.name}}" class="list-group-item" ng-repeat="thing in topThings">{{$index + 1}}. <strong>{{thing.name}}</strong> ({{thing.score}})</a>
+</div>
+<h2>Worst things</h2>
+<div class="list-group">
+    <a href="#/stats/{{thing.name}}" class="list-group-item" ng-repeat="thing in bottomThings">{{$index + 1}}. <strong>{{thing.name}}</strong> ({{thing.score}})</a>
+</div>
+<div class="padding"/>

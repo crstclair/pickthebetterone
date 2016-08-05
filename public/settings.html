@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h2>{{username}}'s settings</h2>
+        <form>
+            <h3>Profile</h3>
+            <div class="alert alert-success" ng-if="profile.completed">
+                Name change complete!
+            </div>
+            <div class="alert alert-danger" ng-if="profile.messages">
+                <p ng-repeat="message in profile.messages">{{message}}</p>
+            </div>
+            <div class="form-group">
+                <label for="profileDisplayName">Display name</label>
+                <input class="form-control" id="profileDisplayName" type="text" name="displayName" maxlength="20" ng-model="profile.displayName" ng-model-options="{ updateOn: 'blur' }" ng-change="profile.completed = false"/>
+                <span class="help-block">This is the name people will see when they look at your profile.</span>
+            </div>
+            <button class="btn btn-primary" ng-click="updateName()">Update name</button>
+            <img ng-src="images/ajax-loader.gif" ng-if="profile.loading">
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <form novalidate name="emailChangeForm">
+            <h3>Contact</h3>
+            <div class="alert alert-success" ng-if="contact.completed">
+                <strong>Change accepted.</strong> Please check your inbox to verify your email address.
+            </div>
+            <div class="alert alert-danger" ng-if="contact.messages">
+                <p ng-repeat="message in contact.messages">{{message}}</p>
+            </div>
+            <span class="text-success" ng-if="contact.emailVerified && emailChangeForm.email.$untouched">Email verified!</span>
+            <span class="text-warning" ng-if="contact.emailNotVerified && emailChangeForm.email.$untouched">Email address has not been verified. Please check your inbox and spam folder. You will need to have a verified email address if you ever need to recover your password.</span>
+            <div ng-class="{'form-group': true, 'has-error': emailChangeForm.email.$touched && !emailChangeForm.email.$valid}">
+                <label for="contactEmail">Email</label>
+                <input class="form-control" id="contactEmail" type="email" name="email" maxlength="50" ng-model="contact.email" ng-model-options="{ updateOn: 'blur' }" ng-change="contact.completed = false" />
+                <span class="help-block">Your email will be used to reset your password if you ever lose it.</span>
+                <span class="help-block" ng-show="emailChangeForm.email.$touched && emailChangeForm.email.$error.email">This doesn't look like a valid email address.</span>
+            </div>
+            <div ng-class="{'form-group': true, 'has-error': emailChangeForm.password.$touched && !emailChangeForm.password.$valid}">
+                <label for="contactPassword">Password</label>
+                <input class="form-control" id="contactPassword" type="password" name="password" ng-model="contact.password" required />
+                <span class="help-block">For security reasons, please reenter your password here.</span>
+                <span class="help-block" ng-show="emailChangeForm.password.$touched && emailChangeForm.password.$error.required">Password required.</span>
+            </div>
+            <a href="" role="button" class="btn btn-primary" ng-click="!emailChangeForm.$valid || updateEmail()">Update email address</a>
+            <img ng-src="images/ajax-loader.gif" ng-if="contact.loading">
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Change Password</h3>
+        <div class="alert alert-success" ng-if="password.completed">
+            Password change complete!
+        </div>
+        <div class="alert alert-danger" ng-if="password.messages">
+            <p ng-repeat="message in password.messages">{{message}}</p>
+        </div>
+        <form novalidate name="passwordChangeForm">
+            <div  ng-class="{'form-group': true, 'has-error': passwordChangeForm.newPassword.$touched && !passwordChangeForm.newPassword.$valid}">
+                <label for="chpassNewPassword">New password</label>
+                <input class="form-control" id="chpassNewPassword" type="password" name="newPassword" maxlength='72' ng-minlength="5" ng-model="password.newPassword" ng-model-options="{ updateOn: 'blur' }" ng-change="password.completed = false"/>
+                <span class="help-block" ng-show="passwordChangeForm.newPassword.$touched && passwordChangeForm.newPassword.$error.minlength">Your password must be at least 5 characters long.</span>
+            </div>
+            <div ng-class="{'form-group': true, 'has-error': passwordChangeForm.confirmNewPassword.$touched && (password.newPassword !== password.confirmNewPassword)}">
+                <label for="chpassConfirmPassword">Confirm new password</label>
+                <input class="form-control" id="chpassConfirmPassword" type="password" name="confirmNewPassword" maxlength='72' ng-minlength="5" ng-model="password.confirmNewPassword" ng-model-options="{ updateOn: 'blur' }" ng-change="password.completed = false"/>
+                <span class="help-block" ng-show="passwordChangeForm.confirmNewPassword.$touched && (password.newPassword !== password.confirmNewPassword)">Passwords don't match.</span>
+            </div>
+            <div class="form-group">
+                <label for="chpassOldPassword">Old password</label>
+                <input class="form-control" id="chpassOldPassword" type="password" name="oldPassword" ng-model="password.oldPassword" ng-change="password.completed = false" required />
+                <span class="help-block">For security reasons, please reenter your current password here.</span>
+                <span class="help-block" ng-show="passwordChangeForm.oldPassword.$touched && passwordChangeForm.oldPassword.$error.required">Password required.</span>
+            </div>
+            <a href="" role="button" class="btn btn-primary" ng-click="!passwordChangeForm.$valid || (password.newPassword !== password.confirmNewPassword) || changePassword()">Change password</a>
+            <img ng-src="images/ajax-loader.gif" ng-if="password.loading">
+        </form>
+        <div class="padding"/>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<h2>Account recovery</h2>
+<div ng-if="!completed">
+    <p>If you gave us your email address, you can use this form to reset your password or recover your username. Just enter your username or the email address you gave us below. We'll send you an email with further instructions.</p>
+    <div class="alert alert-danger" ng-if="messages">
+        <p ng-repeat="message in messages">{{message}}</p>
+    </div>
+    <form name="reset">
+        <div class="form-group">
+            <label for="g">Username or email</label>
+            <input class="form-control" type="text" id="g" name="g" ng-model="val" />
+        </div>
+        <button class="btn btn-primary" type="submit" ng-click="send(val)">Submit</button>
+    </form>
+</div>
+<div ng-if="completed" class="alert alert-success">
+    <strong>Done.</strong> Check your email inbox for instructions.
+</div>

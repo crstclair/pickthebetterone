@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h2>{{user.displayName}}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <p>Time joined: {{user.joinTime}}</p>
+        <p>Things submitted: {{user.thingCount}}</p>
+        <p ng-if="user.bestThing">Best thing submitted: <a href="#/stats/{{user.bestThing}}">{{user.bestThing}}</a></p>
+        <p ng-if="user.worstThing">Worst thing submitted: <a href="#/stats/{{user.worstThing}}">{{user.worstThing}}</a></p>
+    </div>
+    <div class="col-sm-6">
+        <h3>Recent submissions</h3>
+        <div class="list-group">
+            <a href="#/stats/{{thing.name}}" class="list-group-item" ng-repeat="thing in user.recentSubmissions"><strong>{{thing.name}}</strong> submitted {{thing.dateAdded}}</a>
+        </div>
+    </div>
+</div>

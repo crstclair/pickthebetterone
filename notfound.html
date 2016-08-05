@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>File Not Found</title>
+    <style>
+        html {
+            color: white;
+            height: 100%;
+            position: relative;
+        }
+
+        body {
+            font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 0.5em;
+            margin: 0;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+        }
+
+        h1 {
+            font-variant: small-caps;
+        }
+
+        @media(max-width: 767px) {
+            html {background: black url("/images/planet_767.jpg") no-repeat center/cover;}
+            body {font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;}
+        }
+
+        @media(min-width: 768px) and (max-width: 992px) {
+            html {background: black url("/images/planet_992.jpg") no-repeat center/cover;}
+        }
+
+        @media(min-width: 993px) {
+            html {background: black url("/images/planet_1800.jpg") no-repeat center/cover;}
+        }
+    </style>
+</head>
+<body>
+    <h1>File not found</h1>
+    <p>What you were looking for isn't here.</p>
+    <p>But I hope you can find it.</p>
+    <p>Somewhere among the distant planets, you may discover what you seek.</p>
+    <p><a href="/#/">Return to homepage</a></p>
+</body>
+</html>

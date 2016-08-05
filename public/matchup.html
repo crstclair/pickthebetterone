@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-xs-12">
+        <p>Enter the names of two things below and we'll make a link you can share so your friends can choose between those two things.</p>
+    </div>
+</div>
+<div class="row" ng-if="matchup.things[0] && matchup.things[1]">
+    <div class="col-xs-12">
+        <div class="alert alert-success" ng-if="matchup.nameInputs[0].toLowerCase() !== matchup.nameInputs[1].toLowerCase()">
+            <p><strong>Ready!</strong> Copy this URL and share it: {{matchup.url}}</p>
+            <ul ng-social-buttons
+                data-url="matchup.url"
+                data-title="'Pick the Better One'"
+                data-description="'Apples or oranges? Mountains or rivers? For any two things, tell us which is better.'"
+                data-image="'https://www.pickthebetterone.com/images/PicktheBetterOne_brand.png'"
+                showcounts="false">
+                <li>Or use these buttons to share on social media:</li>
+                <li class="ng-social-facebook">Facebook</li>
+                <li class="ng-social-google-plus">Google+</li>
+                <li class="ng-social-twitter">Twitter</li>
+                <li class="ng-social-pinterest">Pinterest</li>
+                <li class="ng-social-stumbleupon">StumbleUpon</li>
+            </ul>
+        </div>
+        <div class="alert alert-danger" ng-if="matchup.nameInputs[0].toLowerCase() === matchup.nameInputs[1].toLowerCase()">
+            <strong>You can't match up a thing with itself.</strong> Someone might get stuck forever, unable to choose between what are clearly equally good things.
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <form name="leftThing">
+            <div class="form-group">
+                <label class="control-label" for="leftThingName">First thing</label>
+                <input class="form-control" type="text" id="leftThingName" ng-model="matchup.nameInputs[0]" ng-change="checkThing(0)" ng-model-options="{debounce: 1000}">
+                <span class="help-block" ng-show="matchup.nameInputs[0].length > 0 && !matchup.things[0] && !loading">Couldn't find a thing by the name "<strong>{{matchup.nameInputs[0]}}</strong>".</span>
+            </div>
+        </form>
+    </div>
+    <div class="col-xs-6">
+        <form name="rightThing">
+            <div class="form-group">
+                <label class="control-label" for="rightThingName">Second thing</label>
+                <input class="form-control" type="text" id="rightThingName" ng-model="matchup.nameInputs[1]" ng-change="checkThing(1)" ng-model-options="{debounce: 1000}">
+                <span class="help-block" ng-show="matchup.nameInputs[1].length > 0 && !matchup.things[1] && !loading">Couldn't find a thing by the name "<strong>{{matchup.nameInputs[1]}}</strong>".</span>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <div ng-if="matchup.things[0]">
+            <pbo-credited-img name="{{matchup.things[0].name}}" bucket="{{bucket}}" filename="{{matchup.things[0].picture}}" credit-name="{{matchup.things[0].photocredit}}" credit-href="{{matchup.things[0].photocredit_url}}" />
+        </div>
+        <div class="padding"/>
+    </div>
+    <div class="col-xs-6">
+        <div ng-if="matchup.things[1]">
+            <pbo-credited-img name="{{matchup.things[1].name}}" bucket="{{bucket}}" filename="{{matchup.things[1].picture}}" credit-name="{{matchup.things[1].photocredit}}" credit-href="{{matchup.things[1].photocredit_url}}" />
+        </div>
+    </div>
+</div>

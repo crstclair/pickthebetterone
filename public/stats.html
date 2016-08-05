@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-sm-6">
+        <h2>{{stats.name}}</h2>
+        <pbo-credited-img bucket="{{stats.bucket}}" filename="{{stats.picture}}" credit-name="{{stats.photocredit}}" credit-href="{{stats.photocredit_url}}" />
+    </div>
+    <div class="col-sm-6">
+        <p>Score: {{stats.score}}</p>
+        <p>Total votes: {{stats.votes}}</p>
+        <p>Date added: {{stats.dateAdded}}</p>
+        <p ng-if="stats.addedBy">Added by: <a ng-href="#/user/{{stats.username}}">{{stats.addedBy}}</a></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <div class="text-center">
+            <a href="#/" class="btn btn-primary btn-lg btn-block">Back to voting</a>
+        </div>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
